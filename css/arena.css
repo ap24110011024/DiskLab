@@ -1,0 +1,21 @@
+/* Algorithm Arena and SCAN vs LOOK */
+.sticky-controls { position: sticky; top: 0; z-index: 20; -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); background: rgba(255, 255, 255, 0.94); }
+.lanes { display: grid; gap: var(--s3); }
+.lane { background: var(--card); box-shadow: var(--shadow-sm); border: 1px solid var(--line); border-left: 4px solid var(--algo); border-radius: var(--radius); padding: var(--s3) var(--s4); transition: box-shadow var(--medium), border-color var(--medium); }
+.lane.is-best { border-color: var(--green); box-shadow: 0 0 0 1px var(--green), var(--shadow-md); }
+.lane-head { display: flex; align-items: center; gap: var(--s3); flex-wrap: wrap; margin-bottom: var(--s2); }
+.lane-head h2 { margin: 0; color: var(--text); font-size: 1.1rem; }
+.lane-total { font-size: 0.9rem; margin-right: auto; }
+.lane-step { font-size: 0.82rem; color: var(--text-2); margin: var(--s2) 0 0; font-family: var(--mono); }
+.lane-path summary { cursor: pointer; font-size: 0.8rem; color: var(--text-2); margin-top: var(--s2); }
+.sl-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--s4); align-items: start; }
+.sl-steps { padding-left: 1.4em; font-size: 0.85rem; color: var(--text-2); margin: var(--s3) 0; }
+.sl-steps li { padding: 3px 0; transition: color var(--fast); }
+.sl-steps li.done { color: var(--text-2); }
+.sl-steps li.current { color: var(--text); font-weight: 500; }
+.sl-steps li.boundary { color: var(--text); }
+.extra-segment { fill: rgba(184, 111, 82, 0.14); stroke: var(--orange); stroke-dasharray: 4 3; }
+
+.why-list { margin: 0; padding-left: 1.1em; font-size: 0.9rem; color: var(--text); }
+.why-list li + li { margin-top: var(--s2); }
+.plain-list { margin: 0; padding-left: 1.1em; font-size: 0.85rem; }

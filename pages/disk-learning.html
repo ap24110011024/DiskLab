@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Disk Learning Center – DiskLab</title>
+  <meta name="description" content="DiskLab: interactive SSTF, SCAN and LOOK disk scheduling visualizer.">
+  <link rel="icon" href="../assets/icons/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../css/variables.css">
+  <link rel="stylesheet" href="../css/base.css">
+  <link rel="stylesheet" href="../css/layout.css">
+  <link rel="stylesheet" href="../css/navigation.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <link rel="stylesheet" href="../css/animations.css">
+  <link rel="stylesheet" href="../css/3d-visuals.css">
+  <link rel="stylesheet" href="../css/learning.css">
+  <link rel="stylesheet" href="../css/responsive.css">
+</head>
+<body>
+  <div class="app">
+    <aside id="sidebar" class="sidebar"></aside>
+    <main class="main" id="main">
+
+      <header class="page-head"><h1>3D Disk Learning Center</h1>
+        <p>Eight short topics, from the platter to the algorithms. Drag to rotate, hover for labels, click to select.</p></header>
+      <div class="learn-layout">
+        <nav class="panel topic-nav" aria-label="Topics"><ol id="topic-list" role="tablist"></ol></nav>
+        <div class="panel learn-stage">
+          <div id="learn-platter"></div>
+          <div id="learn-cylinder" hidden></div>
+          <p class="mono small center stage-info" id="stage-info" aria-live="polite"></p>
+        </div>
+        <article class="panel topic-body">
+          <h2 id="topic-title"></h2>
+          <p id="topic-text"></p>
+          <div id="topic-controls" class="topic-controls"></div>
+          <div id="topic-guide"></div>
+          <div class="button-row topic-steps"><button class="btn btn-small" id="topic-reset">Reset topic</button>
+            <button class="btn btn-small" id="topic-prev">◀ Previous topic</button>
+            <button class="btn btn-small" id="topic-next">Next topic ▶</button></div>
+        </article>
+      </div>
+      <footer class="footer">
+        <div><b>DiskLab</b> · Disk Scheduling Algorithm Visualizer · Operating Systems project</div>
+        <div>SSTF · SCAN · LOOK · head movement is measured in cylinders, not milliseconds · runs entirely in the browser</div>
+      </footer>
+    </main>
+  </div>
+  <script type="module" src="../js/pages/disk-learning.js"></script>
+</body>
+</html>

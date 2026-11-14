@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Simulation Lab – DiskLab</title>
+  <meta name="description" content="DiskLab: interactive SSTF, SCAN and LOOK disk scheduling visualizer.">
+  <link rel="icon" href="../assets/icons/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../css/variables.css">
+  <link rel="stylesheet" href="../css/base.css">
+  <link rel="stylesheet" href="../css/layout.css">
+  <link rel="stylesheet" href="../css/navigation.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <link rel="stylesheet" href="../css/animations.css">
+  <link rel="stylesheet" href="../css/3d-visuals.css">
+  <link rel="stylesheet" href="../css/visualization.css">
+  <link rel="stylesheet" href="../css/simulator.css">
+  <link rel="stylesheet" href="../css/learning.css">
+  <link rel="stylesheet" href="../css/responsive.css">
+</head>
+<body>
+  <div class="app">
+    <aside id="sidebar" class="sidebar"></aside>
+    <main class="main" id="main">
+
+      <div class="lab" data-algo="SSTF">
+        <header class="lab-head">
+          <div><h1>Simulation Lab <span class="status-pill" id="sim-status" data-state="ready" role="status">Ready</span></h1>
+            <p class="muted"><span id="algo-name"></span>: <span id="algo-short"></span></p></div>
+          <div class="algo-tabs" id="algo-tabs" role="tablist" aria-label="Algorithm">
+          <button role="tab" data-algo="SSTF" aria-selected="true">SSTF</button>
+          <button role="tab" data-algo="SCAN" aria-selected="false">SCAN</button>
+          <button role="tab" data-algo="LOOK" aria-selected="false">LOOK</button>
+        </div>
+        </header>
+        <div class="workload-bar">
+          <div id="workload-summary" class="workload-summary"></div>
+          <a class="btn btn-small" href="input-studio.html">Edit workload</a>
+        </div>
+        <p class="faint small" id="source-note"></p>
+
+        <div class="lab-grid">
+          <div class="stack">
+            <div class="panel">
+              <div class="panel-title">Disk track <span class="tag" id="total-final"></span></div>
+              <div class="track-box" id="track"></div>
+              <div class="track-legend" aria-hidden="true"><span><i class="k-pending"></i>pending</span><span><i class="k-target"></i>current target</span>
+                <span><i class="k-done"></i>serviced</span><span><i class="k-turn"></i>turning point (SCAN/LOOK)</span><span><i class="k-edge"></i>disk boundary</span></div>
+              <div class="stat-strip">
+                <div class="metric"><div class="label">Head at</div><div class="value" id="stat-head">0</div></div>
+                <div class="metric"><div class="label">This movement</div><div class="value" id="stat-move">0</div></div>
+                <div class="metric"><div class="label">Total so far</div><div class="value" id="stat-total">0</div></div>
+                <div class="metric"><div class="label">Remaining</div><div class="value" id="stat-remaining">0</div></div>
+                <div class="direction-indicator none" id="direction-indicator"><i></i><span></span></div>
+              </div>
+            </div>
+            <div class="panel"><div id="playback"></div></div>
+            <div class="panel">
+              <div class="panel-title">Request queue <span class="tag" id="queue-count"></span></div>
+              <div class="chips" id="queue-state"></div>
+              <p class="faint small">Click a request to highlight it on the track and the platter.</p>
+            </div>
+            <div class="panel">
+              <div class="panel-title">Service sequence <span class="tag">dashed = boundary visit</span></div>
+              <div class="chips sequence" id="sequence"></div>
+            </div>
+            <div class="panel explanation" id="explanation" aria-live="polite"></div>
+          </div>
+
+          <div class="stack">
+            <div class="panel">
+              <div class="view-tabs algo-tabs" role="tablist">
+                <button role="tab" data-view="platter" aria-selected="true">3D platter</button>
+                <button role="tab" data-view="cylinder" aria-selected="false">Cylinder view</button>
+              </div>
+              <div id="platter" class="view-pane"></div>
+              <div id="cylinder-view" class="view-pane" hidden></div>
+              <p class="faint small center" id="selection-info">Hover a ring or request for details. Click to select.</p>
+            </div>
+            <div class="panel">
+              <div class="panel-title">Seek graph <span class="tag">click a point to jump</span></div>
+              <div id="seek-graph"></div>
+            </div>
+            <div class="panel" id="export">
+              <div class="panel-title">Export</div>
+              <div class="button-row">
+                <button class="btn btn-small" data-export="sequence">Copy service sequence</button>
+                <button class="btn btn-small" data-export="path">Copy movement path</button>
+                <button class="btn btn-small" data-export="csv">Download CSV</button>
+                <button class="btn btn-small" data-export="print">Print summary</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="print-only" id="print-summary"></div>
+      <footer class="footer">
+        <div><b>DiskLab</b> · Disk Scheduling Algorithm Visualizer · Operating Systems project</div>
+        <div>SSTF · SCAN · LOOK · head movement is measured in cylinders, not milliseconds · runs entirely in the browser</div>
+      </footer>
+    </main>
+  </div>
+  <script type="module" src="../js/pages/simulator.js"></script>
+</body>
+</html>

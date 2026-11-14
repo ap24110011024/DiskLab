@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Input Studio – DiskLab</title>
+  <meta name="description" content="DiskLab: interactive SSTF, SCAN and LOOK disk scheduling visualizer.">
+  <link rel="icon" href="../assets/icons/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../css/variables.css">
+  <link rel="stylesheet" href="../css/base.css">
+  <link rel="stylesheet" href="../css/layout.css">
+  <link rel="stylesheet" href="../css/navigation.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <link rel="stylesheet" href="../css/animations.css">
+  <link rel="stylesheet" href="../css/visualization.css">
+  <link rel="stylesheet" href="../css/input-studio.css">
+  <link rel="stylesheet" href="../css/responsive.css">
+</head>
+<body>
+  <div class="app">
+    <aside id="sidebar" class="sidebar"></aside>
+    <main class="main" id="main">
+
+      <header class="page-head"><p class="kicker">Step 1</p><h1>Input Studio</h1>
+        <p>Build the workload every page uses. Changes are checked and saved immediately.</p></header>
+
+      <div class="panel track-panel">
+        <div class="panel-title">Disk track <span class="tag" id="range-label"></span></div>
+        <div class="track-box" id="input-track"></div>
+        <p class="faint small">Click the track to add a request there. Drag the head marker to move it.</p>
+      </div>
+
+      <div class="studio-grid section">
+        <div class="panel">
+          <div class="field">
+            <label for="disk-number">Disk size (cylinders)</label>
+            <div class="inline"><input class="input" id="disk-number" inputmode="numeric">
+              <input class="range" id="disk-slider" type="range" min="10" max="1000" step="10" aria-label="Disk size slider"></div>
+            <p class="error" id="disk-error"></p>
+          </div>
+          <div class="field">
+            <label for="head-number">Initial head position</label>
+            <div class="inline"><input class="input" id="head-number" inputmode="numeric">
+              <input class="range" id="head-slider" type="range" min="0" max="199" aria-label="Head position slider"></div>
+            <p class="error" id="head-error"></p>
+          </div>
+          <div class="field">
+            <span class="label">Initial direction</span>
+            <div class="direction-toggle">
+              <button class="btn" data-direction="LEFT" aria-pressed="false">LEFT · towards 0</button>
+              <span class="dir-arrow" id="direction-arrow" aria-hidden="true"><i></i></span>
+              <button class="btn" data-direction="RIGHT" aria-pressed="true">RIGHT · towards the end</button>
+            </div>
+            <p class="hint">Used by SCAN and LOOK. SSTF ignores it.</p>
+          </div>
+        </div>
+
+        <div class="panel">
+          <div class="field">
+            <label for="add-input">Add requests</label>
+            <form class="inline" id="add-form">
+              <input class="input grow-input" id="add-input" placeholder="e.g. 82, 43 170" autocomplete="off">
+              <button class="btn btn-primary" type="submit">Add</button>
+            </form>
+            <p class="hint">One or many cylinders, separated by commas or spaces. Press Enter to add.</p>
+          </div>
+          <div class="field">
+            <div class="row between"><span class="label">Request queue <span class="faint" id="request-count"></span></span>
+              <button class="btn btn-small btn-danger" id="clear-queue">Clear all</button></div>
+            <div class="chips" id="queue-chips"></div>
+            <p class="hint">Click a number to edit it. Each request keeps a unique id, even duplicates.</p>
+            <p class="error" id="queue-error"></p>
+          </div>
+        </div>
+
+        <div class="panel">
+          <div class="field">
+            <label for="preset-type">Workload preset</label>
+            <select class="select" id="preset-type"></select>
+            <p class="hint" id="preset-hint"></p>
+          </div>
+          <div class="inline wrap">
+            <div class="field"><label for="preset-count">Requests</label><input class="input" id="preset-count" value="10" inputmode="numeric"></div>
+            <div class="field"><label for="preset-seed">Seed</label><input class="input" id="preset-seed" inputmode="numeric"></div>
+          </div>
+          <p class="error" id="preset-error"></p>
+          <div class="button-row">
+            <button class="btn btn-primary" id="generate">Generate</button>
+            <button class="btn" id="regenerate">New seed</button>
+            <button class="btn" id="reset-sample">Reset to sample</button>
+          </div>
+          <p class="hint">The same seed always gives the same requests.</p>
+        </div>
+      </div>
+
+      <div class="panel next-panel section">
+        <p id="save-state" class="muted small"></p>
+        <div class="button-row">
+          <a class="btn btn-primary" data-needs-valid href="simulator.html">Open in Simulation Lab</a>
+          <a class="btn" data-needs-valid href="step-explorer.html">Step Explorer</a>
+          <a class="btn" data-needs-valid href="algorithm-arena.html">Algorithm Arena</a>
+        </div>
+      </div>
+      <footer class="footer">
+        <div><b>DiskLab</b> · Disk Scheduling Algorithm Visualizer · Operating Systems project</div>
+        <div>SSTF · SCAN · LOOK · head movement is measured in cylinders, not milliseconds · runs entirely in the browser</div>
+      </footer>
+    </main>
+  </div>
+  <script type="module" src="../js/pages/input-studio.js"></script>
+</body>
+</html>

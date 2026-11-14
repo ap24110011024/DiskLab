@@ -1,0 +1,53 @@
+/* Design tokens. Change colours, fonts and spacing here. */
+@font-face { font-family: 'Inter'; src: url('../assets/fonts/inter-latin-400-normal.woff2') format('woff2'); font-weight: 400; font-display: swap; }
+@font-face { font-family: 'Inter'; src: url('../assets/fonts/inter-latin-500-normal.woff2') format('woff2'); font-weight: 500; font-display: swap; }
+@font-face { font-family: 'Inter'; src: url('../assets/fonts/inter-latin-600-normal.woff2') format('woff2'); font-weight: 600; font-display: swap; }
+@font-face { font-family: 'Inter'; src: url('../assets/fonts/inter-latin-700-normal.woff2') format('woff2'); font-weight: 700; font-display: swap; }
+@font-face { font-family: 'JetBrains Mono'; src: url('../assets/fonts/jetbrains-mono-latin-400-normal.woff2') format('woff2'); font-weight: 400; font-display: swap; }
+@font-face { font-family: 'JetBrains Mono'; src: url('../assets/fonts/jetbrains-mono-latin-500-normal.woff2') format('woff2'); font-weight: 500; font-display: swap; }
+
+:root {
+  --bg: #F5F2EA;
+  --bg-2: #E8E3D8;
+  --card: #FFFFFF;
+  --card-raised: #F9F7F2;
+  --line: #DCD7CC;
+  --line-strong: #C8C1B4;
+
+  --cyan: #557C78;
+  --blue: #718096;
+  --violet: #9A7768;
+  --orange: #B86F52;
+  --green: #52745D;
+  --red: #B94E4E;
+
+  --text: #252C32;
+  --text-2: #59636B;
+  --text-3: #818781;
+
+  --sstf: #557C78;
+  --scan: #B86F52;
+  --look: #718096;
+  --head: #C29B55;
+}
+
+/*
+ * Non-colour design tokens (kept out of the palette block above).
+ * Shadows only use the --text colour (#252C32) at low opacity.
+ */
+:root {
+  --shadow-sm: 0 1px 2px rgba(37, 44, 50, 0.06);
+  --shadow-md: 0 4px 14px rgba(37, 44, 50, 0.08);
+  --shadow-lg: 0 18px 40px rgba(37, 44, 50, 0.16);
+
+  --font: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --mono: 'JetBrains Mono', ui-monospace, Menlo, monospace;
+
+  --s1: 4px; --s2: 8px; --s3: 12px; --s4: 16px; --s5: 24px; --s6: 32px; --s7: 48px;
+  --radius: 10px;
+  --radius-sm: 6px;
+  --sidebar: 236px;
+  --ease: cubic-bezier(0.4, 0, 0.2, 1);
+  --fast: 160ms;
+  --medium: 280ms;
+}

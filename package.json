@@ -1,0 +1,9 @@
+{
+  "name": "disklab",
+  "version": "2.0.0",
+  "private": true,
+  "description": "DiskLab - interactive SSTF, SCAN and LOOK disk scheduling visualizer (static site)",
+  "type": "module",
+  "scripts": { "test": "node tests/run-tests.mjs" },
+  "license": "MIT"
+}

@@ -1,0 +1,28 @@
+/* Keyframes and page transitions. Reduced motion turns them off. */
+body { opacity: 0; transition: opacity 300ms var(--ease); }
+body.ready { opacity: 1; }
+.main > * { animation: rise-in 420ms var(--ease) both; }
+.main > *:nth-child(2) { animation-delay: 60ms; }
+.main > *:nth-child(3) { animation-delay: 120ms; }
+
+@keyframes rise-in { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+@keyframes fade-in { from { opacity: 0; } to { opacity: 1; } }
+@keyframes modal-in { from { opacity: 0; transform: translateY(12px) scale(0.98); } to { opacity: 1; transform: none; } }
+@keyframes slide-in { from { opacity: 0; transform: translateX(24px); } to { opacity: 1; transform: none; } }
+@keyframes pop-in { from { opacity: 0; transform: scale(0.7); } to { opacity: 1; transform: scale(1); } }
+@keyframes shake { 0%, 100% { transform: translateX(0); } 25% { transform: translateX(-4px); } 75% { transform: translateX(4px); } }
+@keyframes shimmer { from { background-position: 200% 0; } to { background-position: -200% 0; } }
+@keyframes pulse-ring { 0% { box-shadow: 0 0 0 2px var(--card), 0 0 0 2px rgba(37, 44, 50, 0.35); } 100% { box-shadow: 0 0 0 2px var(--card), 0 0 0 9px rgba(37, 44, 50, 0); } }
+@keyframes pulse-svg { 0%, 100% { stroke-opacity: 1; } 50% { stroke-opacity: 0.45; } }
+@keyframes glow-boundary { 0%, 100% { opacity: 1; } 50% { opacity: 0.45; } }
+@keyframes spin { to { transform: rotate(360deg); } }
+@keyframes draw-line { from { stroke-dashoffset: 400; } to { stroke-dashoffset: 0; } }
+@keyframes bob-arrow { 0%, 100% { transform: translateX(0); } 50% { transform: translateX(6px); } }
+@keyframes bob-arrow-left { 0%, 100% { transform: translateX(0); } 50% { transform: translateX(-6px); } }
+@keyframes reveal { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 1ms !important; animation-iteration-count: 1 !important; transition-duration: 1ms !important; }
+  body { opacity: 1; }
+}
+.reduce-motion *, .reduce-motion *::before, .reduce-motion *::after { animation-duration: 1ms !important; animation-iteration-count: 1 !important; transition-duration: 1ms !important; }

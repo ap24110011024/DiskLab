@@ -1,0 +1,49 @@
+/* Explanation panels, Step Explorer, prediction challenge, Disk Learning Center */
+.explanation .step-status { font-family: var(--mono); font-size: 0.78rem; color: var(--text-2); display: flex; gap: var(--s2); align-items: center; flex-wrap: wrap; }
+.explanation .decision { font-size: 1.1rem; color: var(--text); animation: reveal var(--medium) var(--ease); }
+.explanation .reason { border-left: 3px solid var(--head); padding: var(--s2) var(--s3); background: var(--bg); color: var(--text); border-radius: 0 4px 4px 0; animation: reveal var(--medium) var(--ease); }
+.explanation .table-wrap { margin-top: var(--s3); }
+.explorer-grid { display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr); gap: var(--s4); align-items: start; }
+.jump { margin-top: var(--s3); font-size: 0.85rem; color: var(--text-2); }
+.jump .input { width: 80px; }
+.switch { display: inline-flex; align-items: center; gap: 6px; font-weight: 400; font-size: 0.8rem; color: var(--text-2); cursor: pointer; }
+.switch input { accent-color: var(--text); }
+.challenge-q { font-weight: 600; }
+.option-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--s2); margin-bottom: var(--s3); }
+.option { justify-content: flex-start; font-family: var(--mono); }
+.option.right { border-color: var(--green); background: rgba(82, 116, 93, 0.07); color: var(--green); animation: pop-in var(--medium); }
+.option.wrong { border-color: var(--orange); background: rgba(185, 78, 78, 0.06); color: var(--text); animation: shake 300ms; }
+.challenge-feedback .notice { animation: reveal var(--medium) var(--ease); margin-bottom: var(--s2); }
+
+.learn-layout { display: grid; grid-template-columns: 220px minmax(0, 1.2fr) minmax(0, 1fr); gap: var(--s4); align-items: start; }
+.topic-nav ol { list-style: none; margin: 0; padding: 0; }
+.topic-nav button { width: 100%; text-align: left; background: none; border: none; border-left: 2px solid var(--line); color: var(--text-2); font: inherit; font-size: 0.88rem; padding: 8px 12px; cursor: pointer; transition: all var(--fast); }
+.topic-nav button:hover { color: var(--text); border-left-color: var(--line-strong); }
+.topic-nav button[aria-selected='true'] { color: var(--text); font-weight: 500; border-left-color: var(--orange); background: var(--bg); }
+.topic-body p { color: var(--text-2); }
+.topic-body b { color: var(--text); }
+.topic-controls { margin: var(--s4) 0; }
+.topic-steps { margin-top: var(--s5); }
+.stage-info { min-height: 2.6em; color: var(--text); margin-top: var(--s3); }
+.emphasize-bands .band { border-color: rgba(85, 124, 120, 0.6); }
+.sector-highlight {
+  position: absolute; inset: 0; border-radius: 50%; pointer-events: none;
+  background: conic-gradient(from 20deg, rgba(184, 111, 82, 0.5) 0deg 22deg, transparent 22deg 360deg);
+  animation: fade-in 400ms;
+}
+
+/* Algorithm guide (Step Explorer, Learning Center) */
+.guide-what { font-size: 1rem; color: var(--text); margin-bottom: var(--s4); }
+.guide-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--s4); }
+.guide h4 { font-size: 0.78rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; color: var(--text-2); margin: 0 0 var(--s2); }
+.guide ol, .guide ul { margin: 0; padding-left: 1.2em; font-size: 0.88rem; color: var(--text); }
+.guide li + li { margin-top: 4px; }
+.guide ul.pros { list-style: none; padding-left: 0; }
+.guide ul.cons { list-style: none; padding-left: 0; }
+.guide ul.pros li::before { content: '+'; color: var(--green); font-weight: 700; margin-right: 8px; }
+.guide ul.cons li::before { content: '−'; color: var(--red); font-weight: 700; margin-right: 8px; }
+.guide-used, .guide-calc { margin-top: var(--s4); padding-top: var(--s3); border-top: 1px solid var(--line); }
+.guide-used p { font-size: 0.88rem; color: var(--text); margin: 0; }
+.guide-calc p { margin: 0 0 4px; font-size: 0.85rem; word-break: break-word; }
+#topic-guide:not(:empty) { margin-top: var(--s4); padding-top: var(--s4); border-top: 1px solid var(--line); }
+#topic-guide .guide-grid { grid-template-columns: 1fr; }

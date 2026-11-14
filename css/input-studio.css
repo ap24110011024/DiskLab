@@ -1,0 +1,17 @@
+/* Input Studio */
+.studio-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--s4); align-items: start; }
+.track-panel .track-box { cursor: crosshair; }
+.direction-toggle { display: flex; align-items: center; gap: var(--s2); flex-wrap: wrap; }
+.direction-toggle .btn { flex: 1; font-size: 0.8rem; }
+.dir-arrow { width: 44px; height: 24px; position: relative; display: inline-block; }
+.dir-arrow i { position: absolute; top: 50%; left: 8px; right: 8px; height: 2px; background: var(--text); }
+.dir-arrow i::after { content: ''; position: absolute; top: -5px; border: 6px solid transparent; }
+.dir-arrow.right i { animation: bob-arrow 1.2s ease-in-out infinite; }
+.dir-arrow.right i::after { right: -8px; border-left-color: var(--text); }
+.dir-arrow.left i { animation: bob-arrow-left 1.2s ease-in-out infinite; }
+.dir-arrow.left i::after { left: -8px; border-right-color: var(--text); }
+.chip .chip-value { background: none; border: none; color: var(--text); font: inherit; padding: 0; cursor: text; }
+.chip .chip-value:hover { color: var(--text); text-decoration: underline; }
+.next-panel { display: flex; justify-content: space-between; align-items: center; gap: var(--s3); flex-wrap: wrap; }
+.next-panel p { margin: 0; }
+.disabled-link { pointer-events: none; opacity: 0.4; }

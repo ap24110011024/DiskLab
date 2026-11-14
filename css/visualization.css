@@ -1,0 +1,62 @@
+/* SVG disk track and seek graph */
+.disk-track { width: 100%; height: auto; display: block; font-family: var(--mono); user-select: none; overflow: visible; }
+.tr-ticks line { stroke: var(--line-strong); }
+.tr-ticks text { fill: var(--text-2); font-size: 11px; }
+.tr-body { fill: var(--bg-2); stroke: var(--line-strong); }
+.tr-boundary { fill: var(--text-2); transition: fill var(--fast); }
+.tr-boundary.glow { fill: var(--head); stroke: var(--text); stroke-width: 1.5; animation: glow-boundary 700ms ease-in-out infinite; }
+.tr-boundary-label { fill: var(--text); font-size: 12px; font-weight: 500; }
+.tr-start { stroke: var(--text); stroke-dasharray: 3 3; opacity: 0.55; }
+.tr-request circle { fill: var(--card); stroke: var(--text); stroke-width: 2; transition: fill 250ms, stroke 250ms, opacity 250ms; }
+.tr-request.pending circle { animation: pulse-svg 1.8s ease-in-out infinite; }
+.tr-request.serviced circle { fill: var(--green); stroke: var(--green); animation: none; }
+.tr-request.target circle { fill: var(--head); stroke: var(--text); stroke-width: 2.5; animation: none; }
+.tr-request.candidate circle { stroke: var(--cyan); stroke-width: 2.5; }
+.tr-request.dimmed { opacity: 0.3; }
+.tr-request.selected circle { stroke: var(--text); stroke-width: 3; stroke-dasharray: 2 2; }
+.tr-request-label { fill: var(--text-2); font-size: 11px; }
+.tr-head { pointer-events: none; }
+.input-mode .tr-head { pointer-events: all; cursor: grab; }
+.tr-head-tag { fill: var(--head); stroke: var(--text); stroke-width: 1; }
+.tr-head-text { fill: var(--text); font-size: 12px; font-weight: 600; }
+.tr-head-arrow { fill: var(--head); stroke: var(--text); stroke-width: 1.2; stroke-linejoin: round; filter: drop-shadow(0 1px 1.5px rgba(37, 44, 50, 0.3)); }
+.tr-head-stem { stroke: var(--text); stroke-width: 1.5; }
+.tr-direction { fill: var(--text); font-size: 13px; }
+.tr-badge { fill: var(--text); font-size: 12px; font-weight: 600; }
+.tr-trail { stroke: rgba(194, 155, 85, 0.55); stroke-width: 7; stroke-linecap: round; }
+.tr-trail.hidden { display: none; }
+.arc { fill: none; stroke: var(--blue); stroke-width: 1.2; stroke-dasharray: 4 4; }
+.arc.chosen { stroke: var(--cyan); stroke-width: 2; stroke-dasharray: none; stroke-dashoffset: 0; animation: draw-line 500ms var(--ease); stroke-dasharray: 400; }
+.arc-label { fill: var(--text-2); font-size: 11px; }
+.arc-label.chosen { fill: var(--text); font-weight: 600; }
+.track-box { background: var(--card-raised); border: 1px solid var(--line); border-radius: var(--radius-sm); padding: var(--s3) var(--s2) var(--s1); }
+
+.seek-graph { width: 100%; height: auto; display: block; font-family: var(--mono); }
+.sg-edge { stroke: var(--line); }
+.sg-label, .sg-node-label { fill: var(--text-2); font-size: 11px; }
+.sg-planned { fill: none; stroke: var(--line-strong); stroke-width: 1.5; stroke-dasharray: 4 4; }
+.sg-travelled { fill: none; stroke: var(--line-c, var(--cyan)); stroke-width: 2.5; stroke-linejoin: round; }
+.sg-node { cursor: pointer; }
+/* upcoming points are lighter, but their labels keep full contrast */
+.sg-node circle, .sg-node rect { opacity: 0.4; transition: opacity 200ms; }
+.sg-node.visited circle, .sg-node.visited rect { opacity: 1; }
+.sg-node.visited { opacity: 1; }
+.sg-node circle { fill: var(--line-c, var(--cyan)); }
+.sg-node circle.start { fill: var(--card); stroke: var(--text); stroke-width: 2; }
+.sg-node rect.boundary { fill: var(--card); stroke: var(--text); stroke-width: 2; }
+.sg-reverse { fill: var(--text); font-size: 14px; }
+.sg-dot { fill: var(--head); stroke: var(--text); stroke-width: 1.5; filter: drop-shadow(0 1px 2px rgba(37, 44, 50, 0.3)); }
+
+/* completion pop, SSTF fading and LOOK/SCAN turning point */
+.tr-request circle { transform-box: fill-box; transform-origin: center; }
+.tr-request.serviced circle { animation: served-pop 450ms var(--ease); }
+@keyframes served-pop { 0% { transform: scale(1); } 45% { transform: scale(1.7); } 100% { transform: scale(1); } }
+.tr-request.dimmed { opacity: 0.22; transition: opacity 300ms; }
+.tr-request.turn circle { stroke: var(--text); stroke-dasharray: 3 2; stroke-width: 2.5; }
+.track-legend { display: flex; flex-wrap: wrap; gap: 4px 14px; font-size: 0.75rem; color: var(--text-2); margin-top: var(--s2); }
+.track-legend i { display: inline-block; width: 10px; height: 10px; border-radius: 50%; border: 2px solid; margin-right: 5px; vertical-align: -1px; }
+.track-legend .k-pending { border-color: var(--text); background: var(--card); }
+.track-legend .k-target { border-color: var(--text); background: var(--head); }
+.track-legend .k-done { border-color: var(--green); background: var(--green); }
+.track-legend .k-turn { border-color: var(--text); border-style: dashed; }
+.track-legend .k-edge { border-color: var(--text); background: var(--head); border-radius: 2px; }

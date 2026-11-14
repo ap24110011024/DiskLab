@@ -1,0 +1,42 @@
+/* Sidebar navigation: warm neutral panel, teal indicator on the current page */
+.sidebar {
+  position: sticky; top: 0; height: 100vh; overflow-y: auto;
+  background: var(--bg-2);
+  border-right: 1px solid var(--line);
+  padding: var(--s5) var(--s3) var(--s4);
+  display: flex; flex-direction: column;
+}
+.sidebar-top { display: flex; align-items: center; justify-content: space-between; padding: 0 var(--s2) var(--s4); border-bottom: 1px solid var(--line); }
+.brand { display: flex; align-items: center; gap: 10px; color: var(--text); font-size: 1.2rem; font-weight: 700; letter-spacing: -0.01em; }
+.brand:hover { color: var(--text); }
+.brand b { color: var(--cyan); font-weight: 700; }
+.brand .logo { width: 30px; height: 30px; color: var(--text); flex: none; }
+.menu-toggle {
+  display: none; background: var(--card); border: 1px solid var(--line-strong); color: var(--text);
+  border-radius: var(--radius-sm); padding: 6px 12px; font: inherit; font-size: 0.85rem; font-weight: 500; cursor: pointer;
+}
+.nav-links { position: relative; margin-top: var(--s3); flex: 1; }
+.nav-group {
+  /* --text-2, not --text-3: #818781 on #E8E3D8 is only 2.87:1; #59636B is 4.80:1 (WCAG AA) */
+  font-size: 0.7rem; font-weight: 600; color: var(--text-2); text-transform: uppercase; letter-spacing: 0.09em;
+  margin: var(--s4) 0 var(--s1); padding: var(--s3) 12px 0; border-top: 1px solid var(--line);
+}
+.nav-links > .nav-group:first-of-type { border-top: none; padding-top: 0; }
+.nav-links ul { list-style: none; margin: 0; padding: 0; }
+.nav-links li + li { margin-top: 2px; }
+.nav-links a {
+  display: block; padding: 8px 12px 8px 14px; border-radius: var(--radius-sm);
+  color: var(--text-2); font-size: 0.9rem; font-weight: 500;
+  transition: color var(--fast) var(--ease), background var(--fast) var(--ease);
+}
+.nav-links a:hover { color: var(--text); background: rgba(255, 255, 255, 0.6); }
+.nav-links a[aria-current='page'] { color: var(--text); background: rgba(85, 124, 120, 0.13); font-weight: 600; }
+.nav-indicator {
+  position: absolute; left: 0; top: 0; width: 3px; border-radius: 2px;
+  background: var(--cyan);
+  transition: transform var(--medium) var(--ease), height var(--medium) var(--ease), opacity var(--fast);
+}
+.sidebar-note {
+  font-size: 0.75rem; color: var(--text-2); margin: var(--s5) var(--s2) 0; padding-top: var(--s3);
+  border-top: 1px solid var(--line); line-height: 1.6;
+}

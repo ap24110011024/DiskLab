@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Testing Playground – DiskLab</title>
+  <meta name="description" content="DiskLab: interactive SSTF, SCAN and LOOK disk scheduling visualizer.">
+  <link rel="icon" href="../assets/icons/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../css/variables.css">
+  <link rel="stylesheet" href="../css/base.css">
+  <link rel="stylesheet" href="../css/layout.css">
+  <link rel="stylesheet" href="../css/navigation.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <link rel="stylesheet" href="../css/animations.css">
+  <link rel="stylesheet" href="../css/analytics.css">
+  <link rel="stylesheet" href="../css/responsive.css">
+</head>
+<body>
+  <div class="app">
+    <aside id="sidebar" class="sidebar"></aside>
+    <main class="main" id="main">
+
+      <header class="page-head row between"><div><h1>Testing Playground</h1>
+        <p>Each row runs the real algorithm and compares the result with a value worked out by hand. Every result is also checked against general rules: each request serviced exactly once, no invalid cylinder, correct totals, SSTF always nearest, SCAN reaches the boundary before reversing, LOOK reverses at a request.</p></div>
+        <button class="btn btn-primary" id="run-tests">Run all tests</button></header>
+      <div class="notice" id="test-summary"></div>
+      <div class="table-wrap section"><table><thead><tr><th>Test case</th><th>Algorithm</th><th>Expected</th><th>Actual</th><th>Result</th></tr></thead>
+        <tbody id="test-rows"><tr><td colspan="5"><div class="skeleton"></div></td></tr><tr><td colspan="5"><div class="skeleton"></div></td></tr><tr><td colspan="5"><div class="skeleton"></div></td></tr></tbody></table></div>
+      <footer class="footer">
+        <div><b>DiskLab</b> · Disk Scheduling Algorithm Visualizer · Operating Systems project</div>
+        <div>SSTF · SCAN · LOOK · head movement is measured in cylinders, not milliseconds · runs entirely in the browser</div>
+      </footer>
+    </main>
+  </div>
+  <script type="module" src="../js/pages/testing.js"></script>
+</body>
+</html>

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>DiskLab – Disk Scheduling Visualizer</title>
+  <meta name="description" content="DiskLab: interactive SSTF, SCAN and LOOK disk scheduling visualizer.">
+  <link rel="icon" href="assets/icons/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/navigation.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/3d-visuals.css">
+  <link rel="stylesheet" href="css/visualization.css">
+  <link rel="stylesheet" href="css/landing.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+  <div class="app">
+    <aside id="sidebar" class="sidebar"></aside>
+    <main class="main" id="main">
+
+      <section class="hero">
+        <div class="hero-text">
+          <p class="kicker mono">Operating Systems · Disk Scheduling</p>
+          <h1>Understand Disk Scheduling. <span>Watch Every Movement.</span></h1>
+          <p class="lead">Explore SSTF, SCAN and LOOK through interactive disk simulations, real-time head movement and visual algorithm comparisons.</p>
+          <div class="button-row">
+            <a class="btn btn-primary" href="pages/simulator.html">Start Simulation</a>
+            <a class="btn" href="#algorithms">Explore Algorithms</a>
+          </div>
+          <p class="hero-caption mono" id="hero-caption" aria-live="off"></p>
+        </div>
+        <div class="hero-visual">
+          <div id="hero-platter"></div>
+          <p class="faint small center">Drag the platter to rotate it.</p>
+        </div>
+      </section>
+
+      <section class="section" id="algorithms">
+        <div class="section-title"><h2>Three algorithms, one request queue</h2>
+          <span class="faint small mono">disk 0–199 · head 50 · requests 82, 43, 170, 16 · moving right</span></div>
+        <div class="algo-intro" id="algo-intro"></div>
+      </section>
+
+      <section class="section how">
+        <h2>How the visualizer works</h2>
+        <ol class="how-steps">
+          <li><b>Build a workload.</b> Set the disk size, head position, direction and request queue in the <a href="pages/input-studio.html">Input Studio</a>, or pick a preset.</li>
+          <li><b>Run an algorithm.</b> The algorithm produces a complete list of steps: every movement, distance and reason.</li>
+          <li><b>Watch it.</b> The 2D track, seek graph and 3D platter all replay those same steps, so the animation can never disagree with the calculation.</li>
+          <li><b>Compare and test.</b> Race the three algorithms, check them against test cases, and export the results.</li>
+        </ol>
+      </section>
+
+      <section class="section features">
+        <h2>What you can do</h2>
+        <ul class="feature-list">
+          <li><a href="pages/simulator.html">Simulation Lab</a><span>Track, seek graph, 3D platter and cylinder view, all in sync, with full playback controls.</span></li>
+          <li><a href="pages/step-explorer.html">Step Explorer</a><span>Every decision explained, with a "predict the next step" challenge.</span></li>
+          <li><a href="pages/algorithm-arena.html">Algorithm Arena</a><span>SSTF, SCAN and LOOK animated side by side on identical input.</span></li>
+          <li><a href="pages/scan-look.html">SCAN vs LOOK</a><span>See exactly how much extra travel SCAN's boundary trip costs.</span></li>
+          <li><a href="pages/workload-studio.html">Workload Studio</a><span>Repeatable random, clustered, skewed and boundary-heavy workloads.</span></li>
+          <li><a href="pages/analytics.html">Analytics</a><span>Four interactive charts; click a point to jump to that step.</span></li>
+          <li><a href="pages/testing.html">Testing Playground</a><span>The algorithms checked against edge cases, live in the browser.</span></li>
+          <li><a href="pages/history.html">History</a><span>Saved simulations you can reopen and replay.</span></li>
+        </ul>
+      </section>
+
+      <section class="section tech">
+        <h2>How it is built</h2>
+        <dl class="tech-list">
+          <div><dt>Algorithms</dt><dd>Plain JavaScript modules; each returns every step, distance and reason</dd></div>
+          <div><dt>2D views</dt><dd>SVG track and seek graph drawn from those steps</dd></div>
+          <div><dt>3D views</dt><dd>CSS perspective and transforms, no 3D library</dd></div>
+          <div><dt>Charts</dt><dd>Chart.js, bundled locally</dd></div>
+          <div><dt>Storage</dt><dd>LocalStorage for history and saved workloads; no server</dd></div>
+          <div><dt>Testing</dt><dd>In-browser test page plus a command-line runner</dd></div>
+        </dl>
+      </section>
+
+      <section class="section learn-teaser panel">
+        <div>
+          <h2>New to disk structure?</h2>
+          <p class="muted">Platters, tracks, sectors, cylinders, the actuator arm and seeking, explained with 3D illustrations you can rotate and click.</p>
+        </div>
+        <a class="btn" href="pages/disk-learning.html">Open the Disk Learning Center</a>
+      </section>
+      <footer class="footer">
+        <div><b>DiskLab</b> · Disk Scheduling Algorithm Visualizer · Operating Systems project</div>
+        <div>SSTF · SCAN · LOOK · head movement is measured in cylinders, not milliseconds · runs entirely in the browser</div>
+      </footer>
+    </main>
+  </div>
+  <script type="module" src="js/pages/home.js"></script>
+</body>
+</html>

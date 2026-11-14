@@ -1,0 +1,124 @@
+/* 3D disk platter, actuator arm and stacked cylinder view (CSS 3D transforms) */
+.platter-wrap { position: relative; }
+.platter-stage {
+  /* wider than tall: a tilted platter only fills the middle of a square, so the
+     stage is 3:2 and the square camera (62% wide = 93% tall) is centred inside it */
+  position: relative; width: 100%; max-width: 560px; aspect-ratio: 3 / 2; margin: 0 auto;
+  perspective: 1100px; cursor: grab; touch-action: none; user-select: none;
+}
+.platter-stage:active { cursor: grabbing; }
+.platter-camera { position: absolute; left: 19%; top: 3.5%; width: 62%; height: 93%; transform-style: preserve-3d; transition: transform 320ms var(--ease); }
+.platter-shadow { position: absolute; inset: 3%; border-radius: 50%; background: radial-gradient(rgba(37, 44, 50, 0.42), transparent 70%); transform: translateZ(-40px); filter: blur(10px); }
+.platter-disc {
+  position: absolute; inset: 0; border-radius: 50%;
+  /* polished aluminium: light from the upper left, darker towards the rim */
+  background: radial-gradient(circle at 32% 26%, #FFFFFF 0%, #ECEAE5 16%, #CFCCC5 46%, #B2AEA6 76%, #96928B 100%);
+  border: 1px solid #9E9A92;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.55), inset 0 -8px 20px rgba(37, 44, 50, 0.16),
+    0 0 0 5px #DAD6CD, 0 0 0 6px #B7B2A8;
+  transform-style: preserve-3d;
+}
+/* platter edge gives a sense of thickness */
+.platter-disc::after { content: ''; position: absolute; inset: 0; border-radius: 50%; background: #8C8880; border: 1px solid #77736C; transform: translateZ(-9px); }
+/* fixed reflection: stays still while the sector layer spins, like light on real metal */
+.platter-disc::before {
+  content: ''; position: absolute; inset: 0; border-radius: 50%; pointer-events: none;
+  background: conic-gradient(from 200deg, rgba(255, 255, 255, 0) 0deg, rgba(255, 255, 255, 0.42) 28deg, rgba(255, 255, 255, 0) 64deg,
+    rgba(255, 255, 255, 0) 180deg, rgba(255, 255, 255, 0.3) 208deg, rgba(255, 255, 255, 0) 244deg);
+}
+.platter-sectors {
+  position: absolute; inset: 0; border-radius: 50%; pointer-events: none;
+  background: repeating-conic-gradient(from 0deg, rgba(37, 44, 50, 0.07) 0deg 0.8deg, transparent 0.8deg 30deg);
+}
+.is-spinning .platter-sectors { animation: spin 4s linear infinite; }
+.band, .ring, .cv-ring { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); border-radius: 50%; }
+.band { border: 1px solid rgba(37, 44, 50, 0.11); transition: border-color var(--fast), box-shadow var(--fast); }
+.band:hover { border-color: var(--cyan); box-shadow: 0 0 0 1px rgba(85, 124, 120, 0.35); }
+.ring { pointer-events: none; }
+.head-ring { border: 2px solid var(--head); box-shadow: 0 0 0 1px rgba(37, 44, 50, 0.55), inset 0 0 0 1px rgba(37, 44, 50, 0.55); }
+.head-ring.at-boundary { border-width: 3px; border-color: var(--head); box-shadow: 0 0 0 1px var(--text), 0 0 0 6px rgba(194, 155, 85, 0.35); }
+.trail-ring { border: 2px dashed rgba(122, 95, 44, 0.45); }
+.selected-ring { border: 2px dashed var(--text); }
+.p-request {
+  position: absolute; width: 3.4%; height: 3.4%; min-width: 9px; min-height: 9px; padding: 0;
+  border: none; border-radius: 50%; cursor: pointer;
+  transform: translate(-50%, -50%) translateZ(4px);
+  transition: background var(--medium), transform var(--medium);
+}
+.p-request.pending { background: var(--text); box-shadow: 0 0 0 2px #FFFFFF, 0 1px 3px rgba(37, 44, 50, 0.35); animation: pulse-ring 1.8s infinite; }
+.p-request.serviced { background: var(--green); box-shadow: 0 0 0 2px #FFFFFF, 0 1px 3px rgba(37, 44, 50, 0.3); }
+.p-request.target { background: var(--head); box-shadow: 0 0 0 2px var(--text), 0 2px 5px rgba(37, 44, 50, 0.35); transform: translate(-50%, -50%) translateZ(6px) scale(1.5); }
+.p-request.selected { outline: 2px dashed var(--text); outline-offset: 3px; }
+.spindle {
+  position: absolute; left: 50%; top: 50%; width: 15%; height: 15%; border-radius: 50%;
+  transform: translate(-50%, -50%) translateZ(8px); pointer-events: none;
+  background: radial-gradient(circle at 35% 35%, #FFFFFF, #BAB7B0 55%, #6F6C66);
+  border: 1px solid #77736C; box-shadow: 0 0 0 4px rgba(37, 44, 50, 0.1), 0 2px 5px rgba(37, 44, 50, 0.3);
+}
+.actuator { position: absolute; inset: 0; transform: translateZ(16px); transform-style: preserve-3d; pointer-events: none; }
+.arm {
+  position: absolute; left: 97%; top: 90%; width: 60%; height: 2.8%; margin-top: -1.4%;
+  transform-origin: 0 50%;
+  background: linear-gradient(180deg, #F4F3EF, #B8B5AE 55%, #7C7972);
+  border-radius: 999px; box-shadow: 0 6px 10px rgba(37, 44, 50, 0.28);
+}
+.arm-head {
+  position: absolute; right: 0; top: 50%; width: 16px; height: 18px;
+  transform: translate(40%, -50%); border-radius: 4px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0)), var(--head);
+  border: 1px solid var(--text);
+  box-shadow: 0 2px 5px rgba(37, 44, 50, 0.35);
+}
+.arm-pivot {
+  position: absolute; left: 97%; top: 90%; width: 9%; height: 9%; border-radius: 50%; transform: translate(-50%, -50%);
+  background: radial-gradient(circle at 35% 35%, #FFFFFF, #908D86 70%); border: 1px solid #77736C; box-shadow: 0 2px 5px rgba(37, 44, 50, 0.25);
+}
+.platter-tip {
+  position: absolute; z-index: 5; pointer-events: none;
+  background: var(--card); color: var(--text); border: 1px solid var(--line); box-shadow: var(--shadow-md); border-radius: 6px;
+  padding: 4px 8px; font-family: var(--mono); font-size: 0.75rem; white-space: nowrap;
+  animation: fade-in 120ms;
+}
+.platter-controls { display: flex; flex-wrap: wrap; gap: 6px; justify-content: center; margin-top: var(--s3); }
+
+/* Stacked cylinder view */
+.cv-stage { position: relative; height: 290px; perspective: 900px; overflow: hidden; }
+.cv-stack {
+  position: absolute; left: 50%; top: 52%; width: min(240px, 70%); aspect-ratio: 1;
+  transform: translate(-50%, -50%) rotateX(64deg) rotateZ(-14deg); transform-style: preserve-3d;
+}
+.cv-layer {
+  position: absolute; inset: 0; border-radius: 50%;
+  background: radial-gradient(circle at 32% 28%, rgba(255, 255, 255, 0.94), rgba(200, 196, 188, 0.9) 75%);
+  border: 1px solid #A6A299; box-shadow: 0 6px 14px rgba(37, 44, 50, 0.12);
+  transform: translateZ(calc((1 - var(--layer)) * 62px));
+}
+.cv-rings { position: absolute; inset: 0; }
+.cv-ring { border: 1.5px solid; }
+.cv-ring.pending { border-color: rgba(37, 44, 50, 0.45); }
+.cv-ring.serviced { border-color: var(--green); }
+.cv-ring.selected { border-color: var(--text); border-width: 2px; border-style: dashed; }
+.cv-ring.head { border-color: var(--head); border-width: 3px; box-shadow: 0 0 0 1px rgba(37, 44, 50, 0.5), inset 0 0 0 1px rgba(37, 44, 50, 0.5); }
+.cv-spindle { position: absolute; left: 50%; top: 50%; width: 14%; height: 14%; transform: translate(-50%, -50%); border-radius: 50%; background: radial-gradient(circle at 35% 35%, #F4F3EF, #8E8B85); }
+.cv-legend { display: flex; flex-wrap: wrap; gap: 6px 14px; justify-content: center; font-size: 0.78rem; color: var(--text-2); }
+.cv-legend .dot { display: inline-block; width: 10px; height: 10px; border-radius: 50%; border: 2px solid; margin-right: 5px; vertical-align: -1px; }
+.dot.head { border-color: var(--text); background: var(--head); } .dot.pending { border-color: var(--text); }
+.dot.serviced { border-color: var(--green); background: var(--green); } .dot.selected { border-color: var(--text); border-style: dashed; }
+.cv-caption { font-size: 0.8rem; color: var(--text-2); text-align: center; margin: var(--s2) 0 0; }
+
+/* labels and the head readout */
+.disc-label {
+  position: absolute; transform: translate(-50%, -50%) translateZ(10px); pointer-events: none;
+  font-family: var(--mono); font-size: 0.68rem; color: var(--text); white-space: nowrap;
+  background: rgba(255, 255, 255, 0.92); border: 1px solid var(--line-strong); border-radius: 4px; padding: 1px 6px; box-shadow: var(--shadow-sm);
+}
+.disc-label.edge { color: var(--text-2); font-size: 0.62rem; border-color: transparent; background: rgba(255, 255, 255, 0.7); box-shadow: none; }
+.platter-labels .disc-label { border-color: var(--text); animation: fade-in 300ms; }
+.platter-readout {
+  position: absolute; left: 8px; top: 8px; font-size: 0.75rem; color: var(--text-2);
+  background: rgba(255, 255, 255, 0.92); border: 1px solid var(--line); border-radius: 6px; padding: 3px 8px; box-shadow: var(--shadow-sm);
+}
+.platter-readout b { color: var(--text); font-weight: 600; }
+.cv-readout { text-align: center; font-size: 0.78rem; color: var(--text-2); margin: var(--s2) 0 0; }
+.cv-readout b { color: var(--text); font-weight: 600; }
+.cv-surface-label { position: absolute; right: -4%; top: 50%; font-family: var(--mono); font-size: 0.6rem; color: var(--text-2); transform: translateX(100%); }

@@ -1,0 +1,46 @@
+/* Breakpoints: laptops, tablets, phones */
+@media (max-width: 1200px) {
+  .lab-grid { grid-template-columns: 1fr; }
+  .learn-layout { grid-template-columns: 200px minmax(0, 1fr); }
+  .learn-layout .topic-body { grid-column: 1 / -1; }
+  .studio-grid { grid-template-columns: 1fr 1fr; }
+  .grid-5 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+@media (max-width: 960px) {
+  .app { grid-template-columns: minmax(0, 1fr); }
+  .sidebar { position: sticky; top: 0; z-index: 60; height: auto; padding: var(--s3) var(--s4); flex-direction: column; }
+  .menu-toggle { display: inline-block; }
+  .nav-links, .sidebar-note { display: none; }
+  .sidebar.open .nav-links { display: block; margin-top: var(--s2); max-height: 70vh; overflow-y: auto; }
+  .main { padding: var(--s5) var(--s4) var(--s7); }
+  .hero { grid-template-columns: 1fr; min-height: 0; }
+  .hero-visual { max-width: 440px; margin: 0 auto; width: 100%; }
+  .algo-intro, .how-steps, .grid-3 { grid-template-columns: 1fr; }
+  .feature-list { columns: 1; }
+  .studio-grid, .ws-grid, .explorer-grid, .sl-grid, .grid-2 { grid-template-columns: 1fr; }
+  .learn-layout { grid-template-columns: 1fr; }
+  .sticky-controls { top: 60px; }
+}
+@media (max-width: 600px) {
+  h1 { font-size: 1.5rem; }
+  .stat-strip { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .direction-indicator { grid-column: 1 / -1; flex-direction: row; padding: 6px; }
+  .facts { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .grid-4, .grid-5 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .option-grid { grid-template-columns: 1fr; }
+  .playback .button-row .btn { flex: 1 1 auto; }
+  .disk-track { min-width: 0; }
+  .workload-summary { gap: var(--s3); }
+}
+
+/* new layout pieces */
+@media (max-width: 960px) {
+  .guide-grid, .tech-list { grid-template-columns: 1fr; }
+  .tech-list div { border-right: none; border-bottom: 1px solid var(--line); }
+  .tech-list div:last-child { border-bottom: none; }
+  .tech-list div:nth-last-child(-n + 3):not(:last-child) { border-bottom: 1px solid var(--line); }
+}
+@media (max-width: 600px) {
+  .stat-strip { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .footer { flex-direction: column; }
+}

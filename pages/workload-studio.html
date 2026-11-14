@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Workload Studio – DiskLab</title>
+  <meta name="description" content="DiskLab: interactive SSTF, SCAN and LOOK disk scheduling visualizer.">
+  <link rel="icon" href="../assets/icons/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../css/variables.css">
+  <link rel="stylesheet" href="../css/base.css">
+  <link rel="stylesheet" href="../css/layout.css">
+  <link rel="stylesheet" href="../css/navigation.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <link rel="stylesheet" href="../css/animations.css">
+  <link rel="stylesheet" href="../css/visualization.css">
+  <link rel="stylesheet" href="../css/analytics.css">
+  <link rel="stylesheet" href="../css/responsive.css">
+  <script src="../assets/vendor/chart.umd.min.js" defer></script>
+</head>
+<body>
+  <div class="app">
+    <aside id="sidebar" class="sidebar"></aside>
+    <main class="main" id="main">
+
+      <header class="page-head"><h1>Workload Experiment Studio</h1>
+        <p>Generate repeatable workloads with a seed and see how each algorithm copes with different request patterns.</p></header>
+      <div class="ws-grid">
+        <div class="panel">
+          <div class="field"><label for="ws-type">Workload type</label><select class="select" id="ws-type"></select><p class="hint" id="ws-type-hint"></p></div>
+          <div class="grid-2">
+            <div class="field"><label for="ws-disk">Disk size</label><input class="input" id="ws-disk" inputmode="numeric"><p class="error" id="ws-disk-error"></p></div>
+            <div class="field"><label for="ws-head">Initial head</label><input class="input" id="ws-head" inputmode="numeric"><p class="error" id="ws-head-error"></p></div>
+            <div class="field"><label for="ws-count">Requests</label><input class="input" id="ws-count" inputmode="numeric"><p class="error" id="ws-count-error"></p></div>
+            <div class="field"><label for="ws-seed">Seed</label><input class="input" id="ws-seed" inputmode="numeric"><p class="error" id="ws-seed-error"></p></div>
+          </div>
+          <div class="field"><label for="ws-direction">Direction</label>
+            <select class="select" id="ws-direction"><option value="RIGHT">RIGHT</option><option value="LEFT">LEFT</option></select></div>
+          <div class="button-row">
+            <button class="btn btn-primary" id="ws-generate">Generate</button>
+            <button class="btn" id="ws-regenerate">Regenerate (new seed)</button>
+            <button class="btn" id="ws-reset">Reset</button>
+          </div>
+        </div>
+        <div class="panel">
+          <div class="panel-title">Current workload</div>
+          <div class="track-box" id="ws-track"></div>
+          <p class="mono small muted" id="ws-requests"></p>
+          <div class="table-wrap"><table><thead><tr><th>Algorithm</th><th class="num">Total</th><th class="num">Avg</th><th class="num">Dir. changes</th><th class="num">Final head</th></tr></thead>
+            <tbody id="ws-results"></tbody></table></div>
+          <div class="button-row section-sm">
+            <button class="btn btn-primary" id="ws-use">Use in all pages</button>
+            <button class="btn" id="ws-export">Export CSV</button>
+          </div>
+          <div class="inline section-sm"><input class="input grow-input" id="ws-name" placeholder="Name (optional)"><button class="btn" id="ws-save">Save workload</button></div>
+        </div>
+      </div>
+      <div class="panel section"><div class="panel-title">Saved workloads</div><div id="ws-saved"></div></div>
+      <div class="section">
+        <div class="section-title"><h2>Compare across workload types</h2>
+          <button class="btn" id="ws-compare-btn">Run comparison</button></div>
+        <p class="muted small">Uses the disk size, head, request count, direction and seed above for every type.</p>
+        <div id="ws-compare" hidden>
+          <div class="grid-2">
+            <div class="panel"><div class="chart-box tall"><canvas id="ws-chart" role="img" aria-label="Total head movement by workload type"></canvas></div></div>
+            <div class="panel"><div class="table-wrap"><table><thead><tr><th>Workload</th><th class="num">SSTF</th><th class="num">SCAN</th><th class="num">LOOK</th></tr></thead>
+              <tbody id="ws-compare-table"></tbody></table></div><p class="faint small">Bold = lowest for that workload.</p></div>
+          </div>
+        </div>
+      </div>
+      <footer class="footer">
+        <div><b>DiskLab</b> · Disk Scheduling Algorithm Visualizer · Operating Systems project</div>
+        <div>SSTF · SCAN · LOOK · head movement is measured in cylinders, not milliseconds · runs entirely in the browser</div>
+      </footer>
+    </main>
+  </div>
+  <script type="module" src="../js/pages/workload-studio.js"></script>
+</body>
+</html>

@@ -1,0 +1,32 @@
+/* Simulation Lab */
+.lab-head { display: flex; justify-content: space-between; align-items: flex-start; gap: var(--s4); flex-wrap: wrap; margin-bottom: var(--s3); }
+.lab-head h1 { margin-bottom: 4px; }
+.workload-bar { display: flex; justify-content: space-between; align-items: center; gap: var(--s3); flex-wrap: wrap;
+  background: var(--bg-2); border: 1px solid var(--line); border-radius: var(--radius-sm); padding: var(--s2) var(--s4); }
+/* the explanation panel is the "notebook" of the lab: quieter background, larger text */
+.lab .explanation { background: var(--card-raised); }
+.workload-summary { display: flex; gap: var(--s5); flex-wrap: wrap; font-size: 0.85rem; color: var(--text-2); }
+.workload-summary b { color: var(--text); }
+.lab-grid { display: grid; grid-template-columns: minmax(0, 1.45fr) minmax(320px, 1fr); gap: var(--s4); margin-top: var(--s4); align-items: start; }
+.stat-strip { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)) minmax(118px, auto); gap: var(--s2); margin-top: var(--s3); }
+.stat-strip .value { font-size: 1.15rem; }
+.direction-indicator { display: flex; flex-direction: column; align-items: center; justify-content: center; min-width: 92px;
+  border: 1px solid var(--line); background: var(--bg); border-radius: var(--radius-sm); font-family: var(--mono); font-size: 0.72rem; color: var(--text-2); gap: 4px; }
+.direction-indicator i { width: 34px; height: 2px; background: var(--text); position: relative; }
+.direction-indicator i::after { content: ''; position: absolute; top: -5px; border: 6px solid transparent; }
+.direction-indicator.right i { animation: bob-arrow 1s ease-in-out infinite; }
+.direction-indicator.right i::after { right: -8px; border-left-color: var(--text); }
+.direction-indicator.left i { animation: bob-arrow-left 1s ease-in-out infinite; }
+.direction-indicator.left i::after { left: -8px; border-right-color: var(--text); }
+.direction-indicator.none i { background: var(--text-2); width: 10px; height: 10px; border-radius: 50%; }
+.view-tabs { margin-bottom: var(--s3); }
+.view-pane { animation: fade-in var(--medium); }
+.chips.sequence { border-style: solid; min-height: 0; }
+
+
+
+.queue-chip { cursor: pointer; font: inherit; font-family: var(--mono); font-size: 0.82rem; color: var(--text); }
+.queue-chip.selected-chip { outline: 2px dashed var(--text); outline-offset: 1px; }
+
+.lab-head h1 { display: flex; align-items: center; gap: var(--s3); flex-wrap: wrap; }
+.lab-head .status-pill { font-size: 0.75rem; letter-spacing: 0; }

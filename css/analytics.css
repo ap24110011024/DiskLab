@@ -1,0 +1,8 @@
+/* Analytics, Workload Studio, Testing and History */
+.ws-grid { display: grid; grid-template-columns: minmax(280px, 0.8fr) minmax(0, 1.4fr); gap: var(--s4); align-items: start; }
+.saved-row { display: flex; justify-content: space-between; align-items: center; gap: var(--s3); padding: var(--s2) 0; border-bottom: 1px solid var(--line); flex-wrap: wrap; }
+.saved-row:last-child { border-bottom: none; }
+.saved-row .faint { display: block; }
+td.best-cell { color: var(--green); font-weight: 600; }
+/* history row actions wrap into a compact group instead of overflowing the table */
+td.actions .button-row { flex-wrap: wrap; gap: 4px; min-width: 210px; max-width: 260px; }

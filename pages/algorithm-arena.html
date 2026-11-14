@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Algorithm Arena – DiskLab</title>
+  <meta name="description" content="DiskLab: interactive SSTF, SCAN and LOOK disk scheduling visualizer.">
+  <link rel="icon" href="../assets/icons/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../css/variables.css">
+  <link rel="stylesheet" href="../css/base.css">
+  <link rel="stylesheet" href="../css/layout.css">
+  <link rel="stylesheet" href="../css/navigation.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <link rel="stylesheet" href="../css/animations.css">
+  <link rel="stylesheet" href="../css/visualization.css">
+  <link rel="stylesheet" href="../css/arena.css">
+  <link rel="stylesheet" href="../css/responsive.css">
+  <script src="../assets/vendor/chart.umd.min.js" defer></script>
+</head>
+<body>
+  <div class="app">
+    <aside id="sidebar" class="sidebar"></aside>
+    <main class="main" id="main">
+
+      <header class="page-head"><h1>Algorithm Arena</h1>
+        <p>SSTF, SCAN and LOOK race on exactly the same input. Each lane runs its own algorithm independently.</p>
+        <p class="mono faint small" id="arena-input"></p></header>
+      <div class="panel sticky-controls"><div id="playback"></div></div>
+      <div class="lanes section" id="lanes"></div>
+      <div class="grid-2 section">
+        <div class="panel"><div class="panel-title">Results <button class="btn btn-small" id="export-csv">Export CSV</button></div>
+          <div class="table-wrap"><table><thead><tr><th>Algorithm</th><th class="num">Total</th><th class="num">Avg / request</th>
+            <th class="num">Direction changes</th><th class="num">Final head</th><th>Head path</th></tr></thead><tbody id="arena-table"></tbody></table></div>
+          <p class="notice info small" id="arena-note"></p></div>
+        <div class="panel"><div class="panel-title">Head position by step</div><div class="chart-box"><canvas id="arena-chart" role="img" aria-label="Head position at each step for all three algorithms"></canvas></div></div>
+      </div>
+      <div class="grid-2 section">
+        <div class="panel"><div class="panel-title">Total head movement</div><div class="chart-box"><canvas id="arena-total-chart" role="img" aria-label="Total head movement of each algorithm"></canvas></div></div>
+        <div class="panel raised"><div class="panel-title">Why the results differ</div><ul class="why-list" id="arena-why"></ul></div>
+      </div>
+      <div class="panel section"><div class="panel-title">Strengths and weaknesses</div><div class="table-wrap"><table>
+        <thead><tr><th>Algorithm</th><th>Advantages</th><th>Disadvantages</th></tr></thead><tbody id="arena-proscons"></tbody></table></div></div>
+      <footer class="footer">
+        <div><b>DiskLab</b> · Disk Scheduling Algorithm Visualizer · Operating Systems project</div>
+        <div>SSTF · SCAN · LOOK · head movement is measured in cylinders, not milliseconds · runs entirely in the browser</div>
+      </footer>
+    </main>
+  </div>
+  <script type="module" src="../js/pages/algorithm-arena.js"></script>
+</body>
+</html>

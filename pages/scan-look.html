@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SCAN vs LOOK – DiskLab</title>
+  <meta name="description" content="DiskLab: interactive SSTF, SCAN and LOOK disk scheduling visualizer.">
+  <link rel="icon" href="../assets/icons/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../css/variables.css">
+  <link rel="stylesheet" href="../css/base.css">
+  <link rel="stylesheet" href="../css/layout.css">
+  <link rel="stylesheet" href="../css/navigation.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <link rel="stylesheet" href="../css/animations.css">
+  <link rel="stylesheet" href="../css/visualization.css">
+  <link rel="stylesheet" href="../css/arena.css">
+  <link rel="stylesheet" href="../css/responsive.css">
+</head>
+<body>
+  <div class="app">
+    <aside id="sidebar" class="sidebar"></aside>
+    <main class="main" id="main">
+
+      <header class="page-head"><h1>SCAN vs LOOK</h1>
+        <p>Same disk, head, queue and direction. SCAN goes all the way to the edge before turning; LOOK turns at the last request.</p>
+        <p class="mono faint small" id="sl-input"></p></header>
+      <div class="notice warning" id="sl-difference"></div>
+      <div class="panel section"><div id="playback"></div></div>
+      <div class="sl-grid section">
+        <section class="panel lane" style="--algo: var(--scan)">
+          <div class="panel-title"><span class="badge scan">SCAN</span><span class="mono"><span id="total-SCAN">0</span> cyl</span></div>
+          <div class="track-box" id="track-SCAN"></div>
+          <p class="faint small" id="final-SCAN"></p>
+          <ol class="sl-steps" id="steps-SCAN"></ol>
+          <p class="faint small"><span class="swatch extra"></span> shaded = extra trip to the boundary that LOOK avoids</p>
+        </section>
+        <section class="panel lane" style="--algo: var(--look)">
+          <div class="panel-title"><span class="badge look">LOOK</span><span class="mono"><span id="total-LOOK">0</span> cyl</span></div>
+          <div class="track-box" id="track-LOOK"></div>
+          <p class="faint small" id="final-LOOK"></p>
+          <ol class="sl-steps" id="steps-LOOK"></ol>
+        </section>
+      </div>
+      <footer class="footer">
+        <div><b>DiskLab</b> · Disk Scheduling Algorithm Visualizer · Operating Systems project</div>
+        <div>SSTF · SCAN · LOOK · head movement is measured in cylinders, not milliseconds · runs entirely in the browser</div>
+      </footer>
+    </main>
+  </div>
+  <script type="module" src="../js/pages/scan-look.js"></script>
+</body>
+</html>

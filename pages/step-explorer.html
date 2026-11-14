@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Step Explorer – DiskLab</title>
+  <meta name="description" content="DiskLab: interactive SSTF, SCAN and LOOK disk scheduling visualizer.">
+  <link rel="icon" href="../assets/icons/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../css/variables.css">
+  <link rel="stylesheet" href="../css/base.css">
+  <link rel="stylesheet" href="../css/layout.css">
+  <link rel="stylesheet" href="../css/navigation.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <link rel="stylesheet" href="../css/animations.css">
+  <link rel="stylesheet" href="../css/visualization.css">
+  <link rel="stylesheet" href="../css/learning.css">
+  <link rel="stylesheet" href="../css/responsive.css">
+</head>
+<body>
+  <div class="app">
+    <aside id="sidebar" class="sidebar"></aside>
+    <main class="main" id="main">
+
+      <header class="page-head row between">
+        <div><h1>Step Explorer</h1><p id="algo-short"></p></div>
+        <div class="algo-tabs" id="algo-tabs" role="tablist" aria-label="Algorithm">
+          <button role="tab" data-algo="SSTF" aria-selected="true">SSTF</button>
+          <button role="tab" data-algo="SCAN" aria-selected="false">SCAN</button>
+          <button role="tab" data-algo="LOOK" aria-selected="false">LOOK</button>
+        </div>
+      </header>
+      <div class="panel"><div class="track-box" id="track"></div><div class="track-legend" aria-hidden="true"><span><i class="k-pending"></i>pending</span><span><i class="k-target"></i>current target</span>
+                <span><i class="k-done"></i>serviced</span><span><i class="k-turn"></i>turning point (SCAN/LOOK)</span><span><i class="k-edge"></i>disk boundary</span></div><div class="chips sequence" id="sequence"></div></div>
+      <div class="panel section"><div id="playback"></div>
+        <form class="inline jump" id="jump-form"><label for="jump-input">Jump to step</label>
+          <input class="input" id="jump-input" type="number" min="0" value="0"><button class="btn btn-small" type="submit">Go</button>
+          <span class="error" id="jump-error"></span></form>
+      </div>
+      <div class="explorer-grid section">
+        <div class="panel explanation" id="step-panel" aria-live="polite"></div>
+        <div class="panel challenge-panel">
+          <div class="panel-title">Prediction challenge
+            <label class="switch"><input type="checkbox" id="challenge-toggle" checked> <span>on</span></label></div>
+          <div id="challenge"></div>
+        </div>
+      </div>
+      <section class="panel raised section" aria-labelledby="guide-title">
+        <div class="panel-title"><span id="guide-title">About this algorithm</span></div>
+        <div id="algo-guide"></div>
+      </section>
+      <div class="grid-2 section">
+        <div class="panel"><div class="panel-title">All steps <span class="tag">click a row to jump</span></div>
+          <div class="table-wrap"><table><thead><tr><th class="num">#</th><th class="num">From</th><th class="num">To</th><th>Request</th>
+            <th>Direction</th><th class="num">Distance</th><th class="num">Cumulative</th><th>Decision</th></tr></thead>
+            <tbody id="step-rows"></tbody></table></div></div>
+        <div class="panel"><div class="panel-title">Seek graph</div><div id="seek-graph"></div></div>
+      </div>
+      <footer class="footer">
+        <div><b>DiskLab</b> · Disk Scheduling Algorithm Visualizer · Operating Systems project</div>
+        <div>SSTF · SCAN · LOOK · head movement is measured in cylinders, not milliseconds · runs entirely in the browser</div>
+      </footer>
+    </main>
+  </div>
+  <script type="module" src="../js/pages/step-explorer.js"></script>
+</body>
+</html>

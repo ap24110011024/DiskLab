@@ -1,0 +1,50 @@
+/* Page layout: fixed sidebar on the left, content on the right */
+.app { display: grid; grid-template-columns: var(--sidebar) minmax(0, 1fr); min-height: 100vh; }
+.main { padding: var(--s6) var(--s6) var(--s7); max-width: 1320px; width: 100%; }
+.page-head { margin-bottom: var(--s5); max-width: 780px; }
+.page-head p { color: var(--text-2); margin: 0; }
+.page-head .kicker { font-family: var(--mono); font-size: 0.78rem; color: var(--text-2); margin-bottom: var(--s2); display: flex; align-items: center; gap: 8px; }
+.page-head .kicker::before { content: ''; width: 20px; height: 2px; background: var(--orange); }
+.section { margin-top: var(--s6); }
+.section-title { display: flex; justify-content: space-between; align-items: baseline; gap: var(--s3); flex-wrap: wrap; margin-bottom: var(--s3); }
+.section-title h2 { margin: 0; }
+.grid-2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--s4); }
+.grid-3 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--s4); }
+.grid-4 { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--s3); }
+.stack > * + * { margin-top: var(--s4); }
+.row { display: flex; gap: var(--s3); align-items: center; flex-wrap: wrap; }
+.footer { margin-top: var(--s7); padding: var(--s4) 0 0; border-top: 1px solid var(--line-strong); color: var(--text-2); font-size: 0.82rem; display: flex; justify-content: space-between; gap: var(--s2) var(--s5); flex-wrap: wrap; }
+.footer b { color: var(--text); }
+.print-only { display: none; }
+.between { justify-content: space-between; }
+.wrap { flex-wrap: wrap; }
+.center { text-align: center; }
+.nowrap { white-space: nowrap; }
+.section-sm { margin-top: var(--s3); }
+.grid-5 { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: var(--s3); }
+.grow-input { flex: 1; width: auto !important; }
+.chart-box { position: relative; height: 280px; }
+.chart-box.tall { height: 340px; }
+.swatch { display: inline-block; width: 14px; height: 10px; vertical-align: -1px; margin-right: 4px; border-radius: 2px; }
+.swatch.extra { background: rgba(184, 111, 82, 0.18); border: 1px dashed var(--orange); }
+.facts { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--s3) var(--s4); margin: 0 0 var(--s3); }
+.facts .wide { grid-column: 1 / -1; }
+.facts dt { font-size: 0.74rem; color: var(--text-2); }
+.facts dd { margin: 0; font-family: var(--mono); font-size: 0.88rem; word-break: break-word; }
+@media print {
+  .app { display: none; }
+  .print-only { display: block; color: #000; font-family: var(--font); }
+  .print-only table { border-collapse: collapse; }
+  .print-only th, .print-only td { border: 1px solid #999; color: #000; background: none; }
+  body { background: #fff; opacity: 1; }
+  body::before { display: none; }
+}
+
+/* keep 3D elements from causing sideways page scrolling */
+.main { overflow-x: clip; }
+
+/* Grid and flex children default to min-width: auto, which lets a wide table or
+   code line stretch the whole page on phones. Allow them to shrink instead;
+   tables then scroll inside .table-wrap. */
+.app > *, .main > *, .grid-2 > *, .grid-3 > *, .lab-grid > *, .explorer-grid > *, .ws-grid > *, .studio-grid > *, .sl-grid > *, .learn-layout > * { min-width: 0; }
+.page-head.row > div { min-width: 0; flex: 1 1 260px; }
